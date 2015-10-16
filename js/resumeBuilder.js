@@ -1,12 +1,61 @@
-//This is to define the header section 
-var name = "Xiaoyan Niu";
-var formattedName = HTMLheaderName.replace("%data%", "Xiaoyan Niu");
+/* This is to define the bio section, including header and footer sections */
+var bio = {
+	"name": "Xiaoyan Niu",
+	"role": "Web Developer",
+	"contacts": {
+		"mobile": "732-000-0001",
+		"email": "xyniu@email.com",
+		"github": "github",
+		"twitter": "n/a",
+		"location": "New Jersey"
+	},
+	"welcomeMessage": "Welcome to view my resume",
+	"picture": "images/my_picture.png",
+	"skills": ["UI design", "Graphic Design", "Programming", "JavaScript", "CSS"]
+}
 
-var role = "Web Developer";
-var formattedRole = HTMLheaderRole.replace("%data%", "Web Developer");
+bio.display = function() {	
+	var formattedName = HTMLheaderName.replace("%data%", bio.name);
+	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+	var formattedMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+	var formattedPicture = HTMLbioPic.replace("%data%", bio.picture);
+	var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+	var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+	var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+	var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
+	$("#header").prepend(formattedRole);
+	$("#header").prepend(formattedName);
+	$("#header").append(formattedMsg);
+	$("#header").append(formattedPicture);
+	$("#topContacts").append(formattedMobile);
+	$("#topContacts").append(formattedEmail);
+	$("#topContacts").append(formattedGithub);
+	$("#topContacts").append(formattedTwitter);
+	$("#topContacts").append(formattedLocation);
+	$("#footerContacts").append(formattedMobile);
+	$("#footerContacts").append(formattedEmail);
+	$("#footerContacts").append(formattedGithub);
+	$("#footerContacts").append(formattedTwitter);
+	$("#footerContacts").append(formattedLocation);
+
+	if(bio.skills.length > 0) {
+		$("#header").append(HTMLskillsStart);
+		var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
+		$("#header").append(formattedSkill);
+		formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
+		$("#header").append(formattedSkill);
+		formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
+		$("#header").append(formattedSkill);
+		formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
+		$("#header").append(formattedSkill);
+		formattedSkill = HTMLskills.replace("%data%", bio.skills[4]);
+		$("#header").append(formattedSkill);
+	}
+}
+
+bio.display();
 
 /* This is to define the working experience section */
 var work = {
@@ -28,7 +77,7 @@ var work = {
 	]
 }
 
-function displayWork() {
+work.display = function() {
 	for(job in work.jobs) {
 		$("#workExperience").append(HTMLworkStart);
 		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
@@ -42,7 +91,7 @@ function displayWork() {
 	}
 }
 
-displayWork();
+work.display();
 
 /* This is to define the projects section */
 var projects = {
@@ -85,52 +134,6 @@ projects.display = function() {
 }
 
 projects.display();
-
-/* This is to define the bio section */
-var bio = {
-	"name": "Xiaoyan Niu",
-	"role": "Web Developer",
-	"contacts": {
-		"mobile": "732-000-0001",
-		"email": "xyniu@email.com",
-		"github": "github",
-		"twitter": "n/a",
-		"location": "New Jersey"
-	},
-	"welcomeMessage": "Welcome to view my resume",
-	"picture": "images/my_picture.png",
-	"skills": ["UI design", "Graphic Design", "Programming", "JavaScript", "CSS"]
-}
-
-var formattedMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-var formattedPicture = HTMLbioPic.replace("%data%", bio.picture);
-var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-
-$("#topContacts").append(formattedMobile);
-$("#topContacts").append(formattedEmail);
-$("#topContacts").append(formattedGithub);
-$("#topContacts").append(formattedTwitter);
-$("#topContacts").append(formattedLocation);
-$("#header").append(formattedMsg);
-$("#header").append(formattedPicture);
-
-if(bio.skills.length > 0) {
-	$("#header").append(HTMLskillsStart);
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-	$("#header").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-	$("#header").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-	$("#header").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-	$("#header").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[4]);
-	$("#header").append(formattedSkill);
-}
 
 /* This is to define the education section */
 var education = {
